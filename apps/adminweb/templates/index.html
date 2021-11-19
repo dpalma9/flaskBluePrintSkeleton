@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dani Flask Web</title>
+
+    <meta name="description" content="Flask web for testing">
+    <meta name="author" content="Dani Palma">
+
+	<link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+	<link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename='css/style.css') }}"/>
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			 
+			<button type="button" class="btn btn-success float-right">
+				Login
+			</button>
+			<h3>
+				Wellcome to my dummy web
+			</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h3>
+				<br>Overall Status
+			</h3>
+			<table class="table table-hover table-sm">
+				<thead>
+					<tr>
+						<th>
+							Name
+						</th>
+						<th>
+							Time
+						</th>
+						<th>
+							Status
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="table-active">
+						<td>
+							web random
+						</td>
+						<td>
+							{{ currentTime }}
+						</td>
+						<td>
+							UNKOWN
+						</td>
+					</tr>
+					<tr class="table-success">
+						<td>
+							web random 2
+						</td>
+						<td>
+							{{ currentTime }}
+						</td>
+						<td>
+							OK
+						</td>
+					</tr>
+					<tr class="table-warning">
+						<td>
+							web random 3
+						</td>
+						<td>
+							{{ currentTime }}
+						</td>
+						<td>
+							WARNING
+						</td>
+					</tr>
+					<tr class="table-danger">
+						<td>
+							web random 4
+						</td>
+						<td>
+							{{ currentTime }}
+						</td>
+						<td>
+							ALERT
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h3>
+				<br>Cluster Services Status
+			</h3>
+			<div class="tabbable" id="tabs-833802">
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link active show" href="#tab0" data-toggle="tab">Navbar example</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#tab1" data-toggle="tab" onclick="myFunction()">Dame un json</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab0">
+						<p>
+							---empty---
+						</p>
+					</div>
+					<div class="tab-pane" id="tab1">
+						<p id="test">
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<script src="{{ url_for('static', filename='js/jquery.min.js')}}" ></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js')}}" ></script>
+	<script src="{{ url_for('static', filename='js/scripts.js')}}" ></script>
+	<script>
+		function myFunction() {
+			$.ajax({
+    		type: "GET",
+    		url: "/jotason",
+    		dataType: 'json',
+    		success: function(data) {
+				console.log(data)
+				$("#test").empty().append(JSON.stringify(data.result));
+			}
+		});
+		}	
+	</script>
+  </body>
+</html>
